@@ -183,6 +183,12 @@ server {
 
 ## 从快照文件恢复数据
 
+方式1：
+
+使用快照文件转换工具将其转换成列表备份文件后再导入备份： https://lyswhut.github.io/lx-msuic-sync-snapshot-transform/
+
+方式2：
+
 1. 停止同步服务
 2. 修改`data/users/<用户名>/list/snapshotInfo.json`里面的`latest`为你那个备份文件key名（即`snapshot`文件夹下去掉`snapshot_`前缀后的名字）
 3. 删除`snapshotInfo.json`文件内`clients`内的所有设备信息，删除后的内容类似：`{...其他内容,"clients":{}}`
@@ -195,7 +201,7 @@ server {
 | 变量名称 | 说明
 |:---:| ---
 | `PORT` | 绑定的端口号，默认`9527`
-| `BIND_IP` | 绑定的IP地址，默认`127.0.0.1`，使用`0.0.0.0`将接受所有IP请求
+| `BIND_IP` | 绑定的IP地址，默认`127.0.0.1`，使用`0.0.0.0`将接受所有IPv4请求，使用`::`将接受所有IP请求
 | `PROXY_HEADER` | 代理转发的请求头 原始IP，如果设置，则自动启用
 | `CONFIG_PATH` | 配置文件路径，默认使用项目目录下的`config.js`
 | `LOG_PATH` | 服务日志保存路径，默认保存在服务目录下的`logs`文件夹内
